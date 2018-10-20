@@ -5,13 +5,12 @@
  */
 package finalproject;
 
-import java.awt.Color;
 import java.io.IOException;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.*;
-import org.knowm.xchart.XChartPanel;
 
 /**
  *
@@ -24,79 +23,20 @@ public class Student extends javax.swing.JFrame {
      */
     int i;
     Thread t;
+    boolean choice;
+    ArrayList<JPanel> arr;
   //  ArrayList<XChartPanel> charts;
     public Student() {
+        this.setExtendedState(JFrame.MAXIMIZED_BOTH);
         initComponents();
-        //jButton1.setVisible(true);
-        JPanel panel=new JPanel();
-        this.add(panel);
-        i=0;
-        this.repaint();
-        animate();
-    }
-  /*  public void startSlideShow()
-    {
-        createList();
-        animate(charts);
-    }
-    public BarChart05 createBarChart()
-    {
-        return new BarChart05();
-    }
-    public PieChart05 createPieChart()
-    {
-       
-        return new PieChart05();
-    }
-    public StickChart01 createStickChart()
-    {
-        return new StickChart01();
-    }*/
-   /* public void createList()
-    {
         
-        try {
-            charts= new ArrayList<>();
-            charts.add( createBarChart().getPanel());
-            charts.add( createPieChart().getPanel());
-            charts.add(createStickChart().getPanel());
-        } catch (IOException ex) {
-            Logger.getLogger(Student.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }*/
-    
-  /*  public void animate(ArrayList<XChartPanel> arr)
-    {
-        int i=0;
-        int size=arr.size();
-        while(true)
-        {
-            animateLeft(arr.get(i%size),arr.get((i+1)%size));
-            i=(i+1)%size;
-        }
-    }*/
-    
-   /* public void animateLeft(XChartPanel panel1,XChartPanel panel2)
-    {
-        JPanel pnlchart1= panel1;
-        JPanel pnlchart2=panel2;
-        this.slide1.add(pnlchart1);
-        this.slide2.add(pnlchart2);
-        slide1.validate();
-        slide2.validate();
-        
-        int x1=slide1.getX();
-        int x2=slide2.getX();
-        int y=slide1.getY();
-        
-        for(int i1=x1,i2=x2;i1!=-754 && i2!=0 ; i1--,i2--)
-        {
-            slide1.setLocation(i1, y);
-            slide2.setLocation(i2, y);
-            this.repaint();
-            
-        }
-    }*/
+    }
+     public Student(boolean bool) {
+        this.setExtendedState(JFrame.MAXIMIZED_BOTH);
+        initComponents();
+        this.choice=bool;
+    }
+ 
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -109,13 +49,41 @@ public class Student extends javax.swing.JFrame {
         slide2 = new javax.swing.JPanel();
         bg = new javax.swing.JLabel();
         jLayeredPane1 = new javax.swing.JLayeredPane();
-        jPanel2 = new javax.swing.JPanel();
+        stdPanel2 = new javax.swing.JPanel();
+        stdPanel2.setVisible(false);
         jLabel1 = new javax.swing.JLabel();
-        jPanel1 = new javax.swing.JPanel();
+        stdPanel1 = new javax.swing.JPanel();
+        stdPanel1.setVisible(false);
         jLabel2 = new javax.swing.JLabel();
-        jPanel3 = new javax.swing.JPanel();
-        chart1 = new javax.swing.JPanel();
-        jButton2 = new javax.swing.JButton();
+        stdchart1 = new javax.swing.JPanel();
+        stdchart1.setVisible(false);
+        stdchart2 = new javax.swing.JPanel();
+        stdchart2.setVisible(false);
+        stdchart3 = new javax.swing.JPanel();
+        stdchart3.setVisible(false);
+        stdchart4 = new javax.swing.JPanel();
+        stdchart4.setVisible(false);
+        stdchart5 = new javax.swing.JPanel();
+        stdchart5.setVisible(false);
+        comchart1 = new javax.swing.JPanel();
+        comchart1.setVisible(false);
+        comchart2 = new javax.swing.JPanel();
+        comchart2.setVisible(false);
+        comchart5 = new javax.swing.JPanel();
+        comchart5.setVisible(false);
+        comchart6 = new javax.swing.JPanel();
+        comchart6.setVisible(false);
+        comchart7 = new javax.swing.JPanel();
+        comchart7.setVisible(false);
+        stdPanel3 = new javax.swing.JPanel();
+        stdPanel3.setVisible(false);
+        jLabel3 = new javax.swing.JLabel();
+        stdPanel4 = new javax.swing.JPanel();
+        stdPanel4.setVisible(false);
+        jLabel4 = new javax.swing.JLabel();
+        stdPanel5 = new javax.swing.JPanel();
+        stdPanel5.setVisible(false);
+        jLabel5 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
 
@@ -133,106 +101,219 @@ public class Student extends javax.swing.JFrame {
         );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setSize(new java.awt.Dimension(1650, 1080));
+        setUndecorated(true);
+        setPreferredSize(new java.awt.Dimension(1366, 768));
+        setSize(new java.awt.Dimension(1366, 768));
 
-        jPanel2.setBackground(new java.awt.Color(255, 255, 255));
+        jLayeredPane1.setMaximumSize(new java.awt.Dimension(1366, 768));
+        jLayeredPane1.setMinimumSize(new java.awt.Dimension(1366, 748));
+        jLayeredPane1.setPreferredSize(new java.awt.Dimension(1366, 748));
+
+        stdPanel2.setBackground(new java.awt.Color(255, 255, 255));
+        stdPanel2.setLayout(new javax.swing.BoxLayout(stdPanel2, javax.swing.BoxLayout.LINE_AXIS));
 
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/finalproject/images/Screenshot from 2018-10-15 09-39-36.png"))); // NOI18N
+        stdPanel2.add(jLabel1);
 
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1600, Short.MAX_VALUE)
-            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 704, Short.MAX_VALUE))
-        );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1200, Short.MAX_VALUE)
-            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 488, Short.MAX_VALUE))
-        );
-
-        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
+        stdPanel1.setBackground(new java.awt.Color(255, 255, 255));
+        stdPanel1.setLayout(new javax.swing.BoxLayout(stdPanel1, javax.swing.BoxLayout.LINE_AXIS));
 
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/finalproject/images/Screenshot from 2018-10-15 09-39-40.png"))); // NOI18N
-        jLabel2.setText("jLabel2");
+        stdPanel1.add(jLabel2);
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1638, Short.MAX_VALUE)
-            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1200, Short.MAX_VALUE)
-            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
+        stdchart1.setLayout(new javax.swing.BoxLayout(stdchart1, javax.swing.BoxLayout.LINE_AXIS));
 
-        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
-        jPanel3.setLayout(jPanel3Layout);
-        jPanel3Layout.setHorizontalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1638, Short.MAX_VALUE)
-        );
-        jPanel3Layout.setVerticalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1200, Short.MAX_VALUE)
-        );
+        stdchart2.setLayout(new javax.swing.BoxLayout(stdchart2, javax.swing.BoxLayout.LINE_AXIS));
 
-        javax.swing.GroupLayout chart1Layout = new javax.swing.GroupLayout(chart1);
-        chart1.setLayout(chart1Layout);
-        chart1Layout.setHorizontalGroup(
-            chart1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1638, Short.MAX_VALUE)
-        );
-        chart1Layout.setVerticalGroup(
-            chart1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1200, Short.MAX_VALUE)
-        );
+        stdchart3.setLayout(new javax.swing.BoxLayout(stdchart3, javax.swing.BoxLayout.LINE_AXIS));
 
-        jLayeredPane1.setLayer(jPanel2, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        jLayeredPane1.setLayer(jPanel1, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        jLayeredPane1.setLayer(jPanel3, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        jLayeredPane1.setLayer(chart1, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        stdchart4.setLayout(new javax.swing.BoxLayout(stdchart4, javax.swing.BoxLayout.LINE_AXIS));
+
+        stdchart5.setLayout(new javax.swing.BoxLayout(stdchart5, javax.swing.BoxLayout.LINE_AXIS));
+
+        comchart1.setLayout(new javax.swing.BoxLayout(comchart1, javax.swing.BoxLayout.LINE_AXIS));
+
+        comchart2.setLayout(new javax.swing.BoxLayout(comchart2, javax.swing.BoxLayout.LINE_AXIS));
+
+        comchart5.setLayout(new javax.swing.BoxLayout(comchart5, javax.swing.BoxLayout.LINE_AXIS));
+
+        comchart6.setLayout(new javax.swing.BoxLayout(comchart6, javax.swing.BoxLayout.LINE_AXIS));
+
+        comchart7.setLayout(new javax.swing.BoxLayout(comchart7, javax.swing.BoxLayout.LINE_AXIS));
+
+        stdPanel3.setLayout(new javax.swing.BoxLayout(stdPanel3, javax.swing.BoxLayout.LINE_AXIS));
+        stdPanel3.add(jLabel3);
+
+        stdPanel4.setLayout(new javax.swing.BoxLayout(stdPanel4, javax.swing.BoxLayout.LINE_AXIS));
+        stdPanel4.add(jLabel4);
+
+        stdPanel5.setLayout(new javax.swing.BoxLayout(stdPanel5, javax.swing.BoxLayout.LINE_AXIS));
+        stdPanel5.add(jLabel5);
+
+        jLayeredPane1.setLayer(stdPanel2, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jLayeredPane1.setLayer(stdPanel1, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jLayeredPane1.setLayer(stdchart1, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jLayeredPane1.setLayer(stdchart2, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jLayeredPane1.setLayer(stdchart3, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jLayeredPane1.setLayer(stdchart4, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jLayeredPane1.setLayer(stdchart5, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jLayeredPane1.setLayer(comchart1, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jLayeredPane1.setLayer(comchart2, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jLayeredPane1.setLayer(comchart5, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jLayeredPane1.setLayer(comchart6, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jLayeredPane1.setLayer(comchart7, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jLayeredPane1.setLayer(stdPanel3, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jLayeredPane1.setLayer(stdPanel4, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jLayeredPane1.setLayer(stdPanel5, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         javax.swing.GroupLayout jLayeredPane1Layout = new javax.swing.GroupLayout(jLayeredPane1);
         jLayeredPane1.setLayout(jLayeredPane1Layout);
         jLayeredPane1Layout.setHorizontalGroup(
             jLayeredPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1638, Short.MAX_VALUE)
+            .addGap(0, 1366, Short.MAX_VALUE)
             .addGroup(jLayeredPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jLayeredPane1Layout.createSequentialGroup()
-                    .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(stdPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 131, Short.MAX_VALUE)))
+            .addGroup(jLayeredPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addComponent(stdPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 800, Short.MAX_VALUE))
+            .addGroup(jLayeredPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addComponent(stdchart1, javax.swing.GroupLayout.DEFAULT_SIZE, 1731, Short.MAX_VALUE))
+            .addGroup(jLayeredPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jLayeredPane1Layout.createSequentialGroup()
+                    .addGap(0, 0, Short.MAX_VALUE)
+                    .addComponent(stdchart2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 866, Short.MAX_VALUE)))
+            .addGroup(jLayeredPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jLayeredPane1Layout.createSequentialGroup()
+                    .addGap(0, 0, Short.MAX_VALUE)
+                    .addComponent(stdchart3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 866, Short.MAX_VALUE)))
+            .addGroup(jLayeredPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jLayeredPane1Layout.createSequentialGroup()
+                    .addGap(0, 0, Short.MAX_VALUE)
+                    .addComponent(stdchart4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 866, Short.MAX_VALUE)))
+            .addGroup(jLayeredPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jLayeredPane1Layout.createSequentialGroup()
+                    .addGap(0, 0, Short.MAX_VALUE)
+                    .addComponent(stdchart5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 866, Short.MAX_VALUE)))
+            .addGroup(jLayeredPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jLayeredPane1Layout.createSequentialGroup()
+                    .addGap(0, 0, Short.MAX_VALUE)
+                    .addComponent(comchart1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 866, Short.MAX_VALUE)))
+            .addGroup(jLayeredPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jLayeredPane1Layout.createSequentialGroup()
+                    .addGap(0, 0, Short.MAX_VALUE)
+                    .addComponent(comchart2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 866, Short.MAX_VALUE)))
+            .addGroup(jLayeredPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jLayeredPane1Layout.createSequentialGroup()
+                    .addGap(0, 0, Short.MAX_VALUE)
+                    .addComponent(comchart5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 866, Short.MAX_VALUE)))
+            .addGroup(jLayeredPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jLayeredPane1Layout.createSequentialGroup()
+                    .addGap(0, 0, Short.MAX_VALUE)
+                    .addComponent(comchart6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 866, Short.MAX_VALUE)))
+            .addGroup(jLayeredPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jLayeredPane1Layout.createSequentialGroup()
+                    .addGap(0, 0, Short.MAX_VALUE)
+                    .addComponent(comchart7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 866, Short.MAX_VALUE)))
+            .addGroup(jLayeredPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jLayeredPane1Layout.createSequentialGroup()
+                    .addGap(0, 0, Short.MAX_VALUE)
+                    .addComponent(stdPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGap(0, 0, Short.MAX_VALUE)))
             .addGroup(jLayeredPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(jLayeredPane1Layout.createSequentialGroup()
+                    .addGap(0, 0, Short.MAX_VALUE)
+                    .addComponent(stdPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, 800, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 0, Short.MAX_VALUE)))
             .addGroup(jLayeredPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(jLayeredPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addComponent(chart1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(jLayeredPane1Layout.createSequentialGroup()
+                    .addGap(0, 0, Short.MAX_VALUE)
+                    .addComponent(stdPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 0, Short.MAX_VALUE)))
         );
         jLayeredPane1Layout.setVerticalGroup(
             jLayeredPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1200, Short.MAX_VALUE)
+            .addGap(0, 969, Short.MAX_VALUE)
             .addGroup(jLayeredPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(stdPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, 969, Short.MAX_VALUE))
             .addGroup(jLayeredPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(jLayeredPane1Layout.createSequentialGroup()
+                    .addComponent(stdPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 966, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 3, Short.MAX_VALUE)))
             .addGroup(jLayeredPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(jLayeredPane1Layout.createSequentialGroup()
+                    .addComponent(stdchart1, javax.swing.GroupLayout.PREFERRED_SIZE, 969, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 0, Short.MAX_VALUE)))
             .addGroup(jLayeredPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addComponent(chart1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(jLayeredPane1Layout.createSequentialGroup()
+                    .addGap(0, 600, Short.MAX_VALUE)
+                    .addComponent(stdchart2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 484, Short.MAX_VALUE)))
+            .addGroup(jLayeredPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jLayeredPane1Layout.createSequentialGroup()
+                    .addGap(0, 600, Short.MAX_VALUE)
+                    .addComponent(stdchart3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 484, Short.MAX_VALUE)))
+            .addGroup(jLayeredPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jLayeredPane1Layout.createSequentialGroup()
+                    .addGap(0, 600, Short.MAX_VALUE)
+                    .addComponent(stdchart4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 484, Short.MAX_VALUE)))
+            .addGroup(jLayeredPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jLayeredPane1Layout.createSequentialGroup()
+                    .addGap(0, 600, Short.MAX_VALUE)
+                    .addComponent(stdchart5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 484, Short.MAX_VALUE)))
+            .addGroup(jLayeredPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jLayeredPane1Layout.createSequentialGroup()
+                    .addGap(0, 600, Short.MAX_VALUE)
+                    .addComponent(comchart1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 484, Short.MAX_VALUE)))
+            .addGroup(jLayeredPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jLayeredPane1Layout.createSequentialGroup()
+                    .addGap(0, 600, Short.MAX_VALUE)
+                    .addComponent(comchart2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 484, Short.MAX_VALUE)))
+            .addGroup(jLayeredPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jLayeredPane1Layout.createSequentialGroup()
+                    .addGap(0, 600, Short.MAX_VALUE)
+                    .addComponent(comchart5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 484, Short.MAX_VALUE)))
+            .addGroup(jLayeredPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jLayeredPane1Layout.createSequentialGroup()
+                    .addGap(0, 600, Short.MAX_VALUE)
+                    .addComponent(comchart6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 484, Short.MAX_VALUE)))
+            .addGroup(jLayeredPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jLayeredPane1Layout.createSequentialGroup()
+                    .addGap(0, 600, Short.MAX_VALUE)
+                    .addComponent(comchart7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 484, Short.MAX_VALUE)))
+            .addGroup(jLayeredPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jLayeredPane1Layout.createSequentialGroup()
+                    .addGap(0, 0, Short.MAX_VALUE)
+                    .addComponent(stdPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 485, Short.MAX_VALUE)))
+            .addGroup(jLayeredPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jLayeredPane1Layout.createSequentialGroup()
+                    .addGap(javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(stdPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, 600, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 185, Short.MAX_VALUE)))
+            .addGroup(jLayeredPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jLayeredPane1Layout.createSequentialGroup()
+                    .addGap(0, 0, Short.MAX_VALUE)
+                    .addComponent(stdPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 485, Short.MAX_VALUE)))
         );
-
-        jButton2.setText("Back");
 
         jButton1.setText("PLAY");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -253,89 +334,208 @@ public class Student extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(14, 14, 14)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, 69, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLayeredPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(778, 778, 778)
+                        .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(63, 63, 63)
+                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jLayeredPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(bg, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(bg))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(bg, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 488, Short.MAX_VALUE)
-            .addComponent(jLayeredPane1)
+            .addComponent(bg, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
-                .addGap(46, 46, 46)
-                .addComponent(jButton2)
-                .addGap(48, 48, 48)
-                .addComponent(jButton1)
-                .addGap(18, 18, 18)
-                .addComponent(jButton3)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(jLayeredPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jButton3)
+                    .addComponent(jButton1))
+                .addGap(14, 14, 14))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
-        t.start();
+        try {
+            animate();
+        } catch (IOException | SQLException ex) {
+            Logger.getLogger(Student.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        // TODO add your handling code here:
+        new Welcome().setVisible(true);
         dispose();
-        
     }//GEN-LAST:event_jButton3ActionPerformed
-    public void addBarChart(JPanel panel)
+
+        // Adding charts to slide arraylist
+    private JPanel addNoOfVolumes(JPanel panel)
     {
-        BarChart05 barchart= new BarChart05();
+        NoOfVolumes chart=new NoOfVolumes();
         
         try {
-            JPanel temp= barchart.getPanel();
-            this.chart1.add(temp);
-            chart1.validate();
+            JPanel temp= chart.getPanel();
+            panel.add(temp);
+            panel.validate();
         } catch (IOException ex) {
             Logger.getLogger(Student.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
+        return panel;
         
     }
-    
-    public void animate()
+    private JPanel addNumberOfBooks(JPanel panel)
     {
-        JPanel[] arr= new JPanel[4];
-        arr[0]=jPanel1;
-        arr[1]=jPanel2;
-        arr[2]=jPanel3;
-        addBarChart(chart1);
-        arr[3]=chart1;
+        NumberOfBooks chart=new NumberOfBooks();
+        
+        JPanel temp= chart.getPanel();
+        panel.add(temp);
+        panel.validate();
+        return panel;
+        
+    }
+   
+    private JPanel addUsers(JPanel panel) throws IOException
+    {
+         Users chart=new Users();
+        
+        JPanel temp= chart.getPanel();
+        panel.add(temp);
+        panel.validate();
+        return panel;
+    }
+    
+    private JPanel addJournalsIssuedPerYear(JPanel panel) throws IOException
+    {
+        JournalsIssuedPerYear chart=new JournalsIssuedPerYear();
+        JPanel temp=chart.getPanel();
+        panel.add(temp);
+        panel.validate();
+        return panel;
+    }
+    
+      private JPanel addPeriodicalsPerYear(JPanel panel) throws IOException
+    {
+        PeriodicalsPerYear chart=new PeriodicalsPerYear();
+        JPanel temp=chart.getPanel();
+        panel.add(temp);
+        panel.validate();
+        return panel;
+    }
+      
+      private JPanel addLibraryArea(JPanel panel) throws IOException
+    {
+        LibraryArea chart=new LibraryArea();
+        JPanel temp=chart.getPanel();
+        panel.add(temp);
+        panel.validate();
+        return panel;
+    }  
+        private JPanel addExpenditureOnBook(JPanel panel) throws IOException
+    {
+        ExpenditureOnBook chart=new ExpenditureOnBook();
+        JPanel temp=chart.getPanel();
+        panel.add(temp);
+        panel.validate();
+        return panel;
+    }
+             private JPanel addExpenditureDistribution(JPanel panel) throws IOException, SQLException
+    {
+        ExpenditureDistribution chart=new ExpenditureDistribution();
+        JPanel temp=chart.getPanel();
+        panel.add(temp);
+        panel.validate();
+        return panel;
+    }
+   
+             
+    private JPanel addLibraryExpenditurePerYear(JPanel panel) throws IOException, SQLException
+    {
+        LibraryExpenditurePerYear chart=new LibraryExpenditurePerYear();
+        JPanel temp=chart.getPanel();
+        panel.add(temp);
+        panel.validate();
+        return panel;
+    }
+      //Making the slide arraylist for students
+    public ArrayList<JPanel> makeSlidesStudents() throws IOException
+    {
+        ArrayList<JPanel> arr=new ArrayList<>();
+        
+        //arr.add(stdPanel1);
+        //arr.add(stdPanel2);
+        //arr.add(stdPanel3);
+        //arr.add(stdPanel4);
+        //arr.add(stdPanel5);
+        arr.add(this.addNoOfVolumes(stdchart1));
+        arr.add(this.addNumberOfBooks(stdchart2));
+        arr.add(this.addJournalsIssuedPerYear(stdchart3));
+        arr.add(this.addPeriodicalsPerYear(stdchart4));
+        arr.add(this.addUsers(stdchart5));
+        return arr;
+    }
+    
+    
+    public ArrayList<JPanel> makeSlidesCommittee() throws IOException, SQLException
+    {
+        ArrayList<JPanel> arr=new ArrayList<>();
+        arr.add(this.addExpenditureDistribution(comchart1));
+        arr.add(this.addExpenditureOnBook(comchart2));
+        arr.add(this.addLibraryExpenditurePerYear(comchart5));
+        arr.add(this.addLibraryArea(comchart6));
+        arr.add(this.addUsers(comchart7));
+        return arr;
+    }
+    //Main function for starting the slide show
+    public void animate() throws IOException, SQLException
+    {
+        
+        if(this.choice==false)
+        {
+            this.arr=this.makeSlidesStudents();
+        }
+        else if(this.choice==true)
+        {
+          this.arr=this.makeSlidesCommittee();
+        }
+        for(JPanel panel:arr){
+            System.out.println(panel.toString());
+        }
+        int size;
+        size = arr.size();
             t=new Thread(){
+           
+           int i=0;
+            @Override
             public void run()
             {
                 while(true)
                 {     
+                    
+                    System.out.println("Working");
                     try {
-                     t.sleep(1000);
+                     t.sleep(6000);
                     } catch (InterruptedException ex) {
                      Logger.getLogger(Student.class.getName()).log(Level.SEVERE, null, ex);
                     }
-                    for(int j=0;j<arr.length;j++)
-                {
-                 if(j==i%arr.length)
-                     arr[j].setVisible(true);
-                 else
-                     arr[j].setVisible(false);
-                }  
+                    for(int j=0;j<size;j++)
+                    {
+                         if(j==i)
+                             arr.get(j).setVisible(true);
+                        else
+                             arr.get(j).setVisible(false);
+                    }  
                 
-            jLayeredPane1.repaint();
-            i++;
-            }
+                    jLayeredPane1.repaint();
+                    i=(++i)%size;
+                    
+                }
             }
         };
+            t.start();
         
         
     }
@@ -369,6 +569,7 @@ public class Student extends javax.swing.JFrame {
         /* Create and display the form */
         
         java.awt.EventQueue.invokeLater(new Runnable() {
+            @Override
             public void run() {
                 new Student().setVisible(true);
             }
@@ -377,16 +578,29 @@ public class Student extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel bg;
-    private javax.swing.JPanel chart1;
+    private javax.swing.JPanel comchart1;
+    private javax.swing.JPanel comchart2;
+    private javax.swing.JPanel comchart5;
+    private javax.swing.JPanel comchart6;
+    private javax.swing.JPanel comchart7;
     private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JLayeredPane jLayeredPane1;
-    private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
-    private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel slide2;
+    private javax.swing.JPanel stdPanel1;
+    private javax.swing.JPanel stdPanel2;
+    private javax.swing.JPanel stdPanel3;
+    private javax.swing.JPanel stdPanel4;
+    private javax.swing.JPanel stdPanel5;
+    private javax.swing.JPanel stdchart1;
+    private javax.swing.JPanel stdchart2;
+    private javax.swing.JPanel stdchart3;
+    private javax.swing.JPanel stdchart4;
+    private javax.swing.JPanel stdchart5;
     // End of variables declaration//GEN-END:variables
 }

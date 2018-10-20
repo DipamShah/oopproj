@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package xproject;
+package finalproject;
 /**
  *
  * @author shlok
@@ -14,25 +14,24 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import org.knowm.xchart.BitmapEncoder;
 import org.knowm.xchart.PieChart;
 import org.knowm.xchart.PieChartBuilder;
 import org.knowm.xchart.PieSeries.PieSeriesRenderStyle;
-import org.knowm.xchart.SwingWrapper;
+import org.knowm.xchart.XChartPanel;
 import org.knowm.xchart.demo.charts.ExampleChart;
 import org.knowm.xchart.style.PieStyler.AnnotationType;
 import org.knowm.xchart.style.Styler;
 import org.knowm.xchart.style.Styler.ChartTheme;
 import org.knowm.xchart.style.colors.BaseSeriesColors;
 import org.knowm.xchart.style.colors.ChartColor;
-import static org.knowm.xchart.style.colors.GGPlot2SeriesColors.BLUE;
 public class LibraryArea implements ExampleChart<PieChart> {
 
-  public static void main(String[] args) throws IOException {
+  public XChartPanel getPanel() throws IOException {
 
     ExampleChart<PieChart> exampleChart = new LibraryArea();
     PieChart chart = exampleChart.getChart();
-    new SwingWrapper<PieChart>(chart).displayChart();
+    XChartPanel panel=new XChartPanel(chart);
+    return panel;
   }
 
   @Override
@@ -41,8 +40,8 @@ public class LibraryArea implements ExampleChart<PieChart> {
     // Create Chart
     PieChart chart =
         new PieChartBuilder()
-            .width(800)
-            .height(600)
+            .width(1366)
+            .height(748)
             .title("LIBRARY AREA IN SQUARE METRES")
             .theme(ChartTheme.GGPlot2).build();
     // Customize Chart

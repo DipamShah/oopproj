@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package finalchart;
+package finalproject;
 /**
  *
  * @author shlok
@@ -15,17 +15,17 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import org.knowm.xchart.PieChart;
 import org.knowm.xchart.PieChartBuilder;
-import org.knowm.xchart.SwingWrapper;
-import org.knowm.xchart.demo.charts.ExampleChart;
+import org.knowm.xchart.XChartPanel;
 import org.knowm.xchart.style.Styler;
 import org.knowm.xchart.style.Styler.ChartTheme;
 public class ExpenditureDistribution  {
 
-  public static void main(String[] args) throws SQLException {
+  public XChartPanel getPanel() throws SQLException {
 
     ExpenditureDistribution exampleChart = new ExpenditureDistribution();
     PieChart chart = exampleChart.getChart();
-    new SwingWrapper<PieChart>(chart).displayChart();
+    XChartPanel panel=new XChartPanel(chart);
+    return panel;
   }
 
   public PieChart getChart() throws SQLException {
@@ -33,8 +33,8 @@ public class ExpenditureDistribution  {
     // Create Chart
     PieChart chart =
         new PieChartBuilder()
-            .width(800)
-            .height(600)
+            .width(1366)
+            .height(748)
             .title("Expenditure Distribution In 2017")
             .theme(ChartTheme.XChart)
             .build();
@@ -63,4 +63,3 @@ public class ExpenditureDistribution  {
     return chart;
   }
 }
-

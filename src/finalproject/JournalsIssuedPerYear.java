@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package xproject;
+package finalproject;
 
 import java.awt.Color;
 import java.io.IOException;
@@ -13,11 +13,10 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
-import org.knowm.xchart.BitmapEncoder;
 import org.knowm.xchart.CategoryChart;
 import org.knowm.xchart.CategoryChartBuilder;
 import org.knowm.xchart.CategorySeries.CategorySeriesRenderStyle;
-import org.knowm.xchart.SwingWrapper;
+import org.knowm.xchart.XChartPanel;
 import org.knowm.xchart.demo.charts.ExampleChart;
 import org.knowm.xchart.style.Styler;
 import org.knowm.xchart.style.Styler.ChartTheme;
@@ -29,12 +28,13 @@ import org.knowm.xchart.style.Styler.LegendPosition;
  */
 public class JournalsIssuedPerYear implements ExampleChart<CategoryChart> {
  
-  public static void main(String[] args) throws IOException {
+  public XChartPanel getPanel() throws IOException {
  
     ExampleChart<CategoryChart> exampleChart = new JournalsIssuedPerYear();
     CategoryChart chart = exampleChart.getChart();
-    new SwingWrapper<CategoryChart>(chart).displayChart();
-    BitmapEncoder.saveBitmap(chart, "./NATIONALJOURNALS", BitmapEncoder.BitmapFormat.PNG);
+    XChartPanel panel=new XChartPanel(chart);
+    return panel;
+    
   }
  
   @Override
@@ -42,7 +42,7 @@ public class JournalsIssuedPerYear implements ExampleChart<CategoryChart> {
     Connection con = DbConnect.getConnection();
     // Create Chart
     CategoryChart chart = new CategoryChartBuilder()
-            .width(800).height(600).
+            .width(1366).height(748).
             title("JOURNALS ISSUED BY LIBRARY EVERY YEAR").
             theme(ChartTheme.Matlab).build();
     // Customize Chart
@@ -54,8 +54,8 @@ public class JournalsIssuedPerYear implements ExampleChart<CategoryChart> {
     chart.getStyler().setToolTipsEnabled(true);
     chart.getStyler().setToolTipType(Styler.ToolTipType.yLabels);
     // Series
-    List<Integer> xData = new ArrayList<Integer>();
-    List<Integer> yData = new ArrayList<Integer>();
+    List<Integer> xData = new ArrayList<>();
+    List<Integer> yData = new ArrayList<>();
     try {
                 Statement statement = con.createStatement();
                 ResultSet resultSet = statement.executeQuery("SELECT * FROM nationaljournal");

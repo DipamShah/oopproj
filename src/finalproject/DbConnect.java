@@ -32,7 +32,7 @@ public class DbConnect {
            con = DriverManager.getConnection("jdbc:mysql://localhost:3306/test","root","root");
            System.out.println("Connection created!!");
            st =  con.createStatement();
-            
+           System.out.println("Statement created");
         }catch(Exception ex){
             System.out.println("Erro:"+ex);
         }

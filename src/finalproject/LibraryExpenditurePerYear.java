@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package finalchart;
+package finalproject;
 import java.awt.Color;
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -11,16 +11,13 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import org.knowm.xchart.SwingWrapper;
+import org.knowm.xchart.XChartPanel;
 import org.knowm.xchart.XYChart;
 import org.knowm.xchart.XYChartBuilder;
 import org.knowm.xchart.XYSeries;
 import org.knowm.xchart.demo.charts.ExampleChart;
 import org.knowm.xchart.style.Styler;
 import org.knowm.xchart.style.Styler.ChartTheme;
-import static org.knowm.xchart.style.Styler.ChartTheme.GGPlot2;
 import org.knowm.xchart.style.Styler.LegendPosition;
 import org.knowm.xchart.style.Styler.TextAlignment;
 /**
@@ -29,11 +26,12 @@ import org.knowm.xchart.style.Styler.TextAlignment;
  */
 public class LibraryExpenditurePerYear implements ExampleChart<XYChart> 
 {
-  public static void main(String[] args) {
+  public XChartPanel getPanel() {
 
     ExampleChart<XYChart> exampleChart = new LibraryExpenditurePerYear();
     XYChart chart = exampleChart.getChart();
-    new SwingWrapper<>(chart).displayChart();
+    XChartPanel panel=new XChartPanel(chart);
+    return panel;
   }
 
   @Override
@@ -45,8 +43,8 @@ public class LibraryExpenditurePerYear implements ExampleChart<XYChart>
     // Create Chart
     XYChart chart =
         new XYChartBuilder()
-            .width(800)
-            .height(600)
+            .width(1366)
+            .height(748)
             .title("Expenditure Per Year")
             .xAxisTitle("YEAR")
             .yAxisTitle("EXPENSE")

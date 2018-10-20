@@ -3,30 +3,31 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package finalchart;
+package finalproject;
 /**
  *
  * @author shlok
  */
 import java.sql.Connection;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import org.knowm.xchart.CategoryChart;
 import org.knowm.xchart.CategoryChartBuilder;
-import org.knowm.xchart.SwingWrapper;
+import org.knowm.xchart.XChartPanel;
 import org.knowm.xchart.demo.charts.ExampleChart;
 import org.knowm.xchart.style.Styler;
 import org.knowm.xchart.style.Styler.ChartTheme;
-import static org.knowm.xchart.style.Styler.LegendPosition.OutsideE;
 import static org.knowm.xchart.style.Styler.LegendPosition.OutsideS;
 public class PeriodicalsPerYear implements ExampleChart<CategoryChart> {
 
-  public static void main(String[] args) {
+  public XChartPanel getPanel() {
 
     ExampleChart<CategoryChart> exampleChart = new PeriodicalsPerYear();
     CategoryChart chart = exampleChart.getChart();
-    new SwingWrapper<CategoryChart>(chart).displayChart();
+    XChartPanel panel=new XChartPanel(chart);
+    return panel;
   }
 
   @Override
@@ -35,8 +36,8 @@ public class PeriodicalsPerYear implements ExampleChart<CategoryChart> {
     // Create Chart
     CategoryChart chart =
         new CategoryChartBuilder()
-            .width(800)
-            .height(600)
+            .width(1366)
+            .height(748)
             .title("PERIODICALS PER YEAR")
             .xAxisTitle("YEAR")
             .yAxisTitle("PERIODICALS")
@@ -52,8 +53,8 @@ public class PeriodicalsPerYear implements ExampleChart<CategoryChart> {
     chart.getStyler().setLegendPosition(OutsideS);
     chart.getStyler().setXAxisLabelRotation(50);
     // Series
-    ArrayList<String> a = new ArrayList<String>();
-    ArrayList<Double> b = new ArrayList<Double>();
+    ArrayList<String> a = new ArrayList<>();
+    ArrayList<Double> b = new ArrayList<>();
     Connection con = DbConnect.getConnection();
     int i = 0;
     try
@@ -67,7 +68,7 @@ public class PeriodicalsPerYear implements ExampleChart<CategoryChart> {
             b.add(Double.parseDouble(rs.getString("amount")));
             i++;
         }
-    }catch(Exception e)
+    }catch(NumberFormatException | SQLException e)
     {
         System.out.println(e);
     }

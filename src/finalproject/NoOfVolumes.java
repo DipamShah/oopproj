@@ -3,41 +3,37 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package xproject;
+package finalproject;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
-import org.knowm.xchart.BitmapEncoder;
 import org.knowm.xchart.CategoryChart;
 import org.knowm.xchart.CategoryChartBuilder;
-import org.knowm.xchart.CategorySeries;
-import org.knowm.xchart.SwingWrapper;
+import org.knowm.xchart.XChartPanel;
 import org.knowm.xchart.demo.charts.ExampleChart;
 import org.knowm.xchart.style.Styler;
 import org.knowm.xchart.style.Styler.ChartTheme;
-import static org.knowm.xchart.style.Styler.LegendPosition.InsideNW;
-import static org.knowm.xchart.style.Styler.LegendPosition.OutsideE;
 import static org.knowm.xchart.style.Styler.LegendPosition.OutsideS;
 /**
  *
  * @author shlok
  */
   public class NoOfVolumes implements ExampleChart<CategoryChart> {
-  public static void main(String[] args) throws IOException {
+  public XChartPanel getPanel() throws IOException {
     ExampleChart<CategoryChart> exampleChart = new NoOfVolumes();
     CategoryChart chart = exampleChart.getChart();
-    new SwingWrapper<CategoryChart>(chart).displayChart();
+    XChartPanel panel=new XChartPanel(chart);
+    return panel;
   }
   @Override
   public CategoryChart getChart() {
     // Create Chart
     Connection con = DbConnect.getConnection();
-    CategoryChart chart = new CategoryChartBuilder().width(800).height(600)
+    CategoryChart chart = new CategoryChartBuilder().width(1366).height(748)
             .title("BRANCH WISE DISTRIBUTION")
             .xAxisTitle("BRANCH")
             .yAxisTitle("DISTRIBUTION")
@@ -48,8 +44,8 @@ import static org.knowm.xchart.style.Styler.LegendPosition.OutsideS;
     chart.getStyler().setToolTipsEnabled(true);
     chart.getStyler().setToolTipType(Styler.ToolTipType.yLabels);
     // Series
-    List<String> xData = new ArrayList<String>();
-    List<Integer> yData = new ArrayList<Integer>();
+    List<String> xData = new ArrayList<>();
+    List<Integer> yData = new ArrayList<>();
     try {
                 Statement statement = con.createStatement();
                 ResultSet resultSet = statement.executeQuery("SELECT * FROM noofvolumes");
@@ -66,11 +62,11 @@ import static org.knowm.xchart.style.Styler.LegendPosition.OutsideS;
                 System.out.println(e);
     }
     chart.addSeries("NUMBER OF VOLUMES",xData,yData);
-    List<String> xData1 = new ArrayList<String>();
-    List<Integer> yData1 = new ArrayList<Integer>();
+    List<String> xData1 = new ArrayList<>();
+    List<Integer> yData1 = new ArrayList<>();
     try {
                 Statement statement = con.createStatement();
-                ResultSet resultSet = statement.executeQuery("SELECT * FROM nooftitles");
+                ResultSet resultSet = statement.executeQuery("SELECT * FROM noofvolumes");
                 int i = 0;
                 while (resultSet.next()) 
                 {

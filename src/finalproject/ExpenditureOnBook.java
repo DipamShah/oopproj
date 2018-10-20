@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package xproject;
+package finalproject;
 import java.awt.Color;
 import java.io.IOException;
 import java.sql.Connection;
@@ -17,6 +17,7 @@ import org.knowm.xchart.CategoryChart;
 import org.knowm.xchart.CategoryChartBuilder;
 import org.knowm.xchart.CategorySeries.CategorySeriesRenderStyle;
 import org.knowm.xchart.SwingWrapper;
+import org.knowm.xchart.XChartPanel;
 import org.knowm.xchart.demo.charts.ExampleChart;
 import org.knowm.xchart.style.Styler;
 import org.knowm.xchart.style.Styler.ChartTheme;
@@ -28,11 +29,12 @@ import org.knowm.xchart.style.Styler.LegendPosition;
  */
 public class ExpenditureOnBook implements ExampleChart<CategoryChart> {
  
-  public static void main(String[] args) throws IOException {
+  public XChartPanel getPanel() throws IOException {
  
     ExampleChart<CategoryChart> exampleChart = new ExpenditureOnBook();
     CategoryChart chart = exampleChart.getChart();
-    new SwingWrapper<CategoryChart>(chart).displayChart();
+    XChartPanel panel=new XChartPanel(chart);
+    return panel;
   }
  
   @Override
@@ -40,7 +42,7 @@ public class ExpenditureOnBook implements ExampleChart<CategoryChart> {
     Connection con = DbConnect.getConnection();
     // Create Chart
     CategoryChart chart = new CategoryChartBuilder()
-            .width(800).height(600).
+            .width(1366).height(748).
             title("EXPENDITURE ON BOOKS EVERY YEAR").
             theme(ChartTheme.GGPlot2).build();
     // Customize Chart

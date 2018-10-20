@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package xproject;
+package finalproject;
 /**
  *
  * @author shlok
@@ -14,27 +14,23 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import javax.swing.JPanel;
-import org.knowm.xchart.BitmapEncoder;
+import java.util.ArrayList;
 import org.knowm.xchart.PieChart;
 import org.knowm.xchart.PieChartBuilder;
-import org.knowm.xchart.SwingWrapper;
 import org.knowm.xchart.XChartPanel;
 import org.knowm.xchart.demo.charts.ExampleChart;
 import org.knowm.xchart.style.PieStyler.AnnotationType;
 import org.knowm.xchart.style.Styler;
 import org.knowm.xchart.style.Styler.ChartTheme;
 import static org.knowm.xchart.style.Styler.LegendPosition.InsideNW;
-import static org.knowm.xchart.style.Styler.LegendPosition.OutsideS;
 public class Users implements ExampleChart<PieChart> {
 
-  public static void main(String[] args) throws IOException {
+  public XChartPanel getPanel() throws IOException {
 
     ExampleChart<PieChart> exampleChart = new Users();
     PieChart chart = exampleChart.getChart();
-    new SwingWrapper<PieChart>(chart).displayChart();
-    JPanel pnlChart = new XChartPanel(chart);      
-    pnlChart.validate();
+    XChartPanel panel=new XChartPanel(chart);
+    return panel;
   }
   @Override
   public PieChart getChart() {
@@ -42,8 +38,8 @@ public class Users implements ExampleChart<PieChart> {
     // Create Chart
     PieChart chart =
         new PieChartBuilder()
-            .width(800)
-            .height(600)
+            .width(1366)
+            .height(748)
             .title("USERS IN THE LIBRARY")
             .theme(ChartTheme.Matlab)
             .build();
@@ -58,26 +54,29 @@ public class Users implements ExampleChart<PieChart> {
     chart.getStyler().setToolTipType(Styler.ToolTipType.xAndYLabels);
     chart.getStyler().setLegendPosition(InsideNW);
     //chart.getStyler().set
-    Color[] sliceColors =
+    /*Color[] sliceColors =
         new Color[] {
           new Color(127,127,127),
           new Color(229,248,255),
           new Color(25,81,102),
-        };
-    chart.getStyler().setSeriesColors(sliceColors);
+        };*/
+  //  chart.getStyler().setSeriesColors(sliceColors);
     chart.getStyler().setAnnotationType(AnnotationType.Value);
     // Series
-    String xData[] = new String[3];
-    int yData[] = new int[3];
+    ArrayList<String> xData=new ArrayList<>();
+    ArrayList<Integer> yData=new ArrayList<>();
+    
     try {
                 Statement statement = con.createStatement();
                 ResultSet resultSet = statement.executeQuery("SELECT * FROM users");
                 int i = 0;
                 while (resultSet.next()) 
                 {
-                    xData[i] = resultSet.getString("USERS");
-                    yData[i] = Integer.parseInt(resultSet.getString("VALUE"));
-                    chart.addSeries(xData[i],yData[i]);
+                    xData.add(resultSet.getString("USERS"));
+                    yData.add(Integer.parseInt(resultSet.getString("VALUE")));
+                    System.out.println(xData.get(i)+yData.get(i).toString());
+                    chart.addSeries(xData.get(i),yData.get(i));
+                    i++;
                 }
             } 
     catch (NumberFormatException | SQLException e) 

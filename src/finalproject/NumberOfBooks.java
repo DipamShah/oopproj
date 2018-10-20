@@ -3,14 +3,15 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package xproject;
+package finalproject;
 import java.sql.Connection;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import org.knowm.xchart.CategoryChart;
 import org.knowm.xchart.CategoryChartBuilder;
-import org.knowm.xchart.SwingWrapper;
+import org.knowm.xchart.XChartPanel;
 import org.knowm.xchart.demo.charts.ExampleChart;
 import org.knowm.xchart.style.Styler;
 import static org.knowm.xchart.style.Styler.LegendPosition.OutsideS;
@@ -25,11 +26,13 @@ public class NumberOfBooks implements ExampleChart<CategoryChart>
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-  public static void main(String[] args){
+  public XChartPanel getPanel(){
 
     ExampleChart<CategoryChart> exampleChart = new NumberOfBooks();
     CategoryChart chart = exampleChart.getChart();
-    new SwingWrapper<CategoryChart>(chart).displayChart();
+    
+    XChartPanel panel=new XChartPanel(chart);
+    return panel;
   }
 
   @Override
@@ -38,8 +41,8 @@ public class NumberOfBooks implements ExampleChart<CategoryChart>
     // Create Chart
     CategoryChart chart =
         new CategoryChartBuilder()
-            .width(800)
-            .height(600)
+            .width(1366)
+            .height(748)
             .title("BOOKS PURCHASED EVERY YEAR")
             .xAxisTitle("YEAR")
             .yAxisTitle("NUMBER OF BOOKS")
@@ -55,8 +58,8 @@ public class NumberOfBooks implements ExampleChart<CategoryChart>
     chart.getStyler().setLegendPosition(OutsideS);
     chart.getStyler().setXAxisLabelRotation(45);
     // Series
-    ArrayList<String> a = new ArrayList<String>();
-    ArrayList<Double> b = new ArrayList<Double>();
+    ArrayList<String> a = new ArrayList<>();
+    ArrayList<Double> b = new ArrayList<>();
     Connection con = DbConnect.getConnection();
     int i = 0;
     try
@@ -70,7 +73,7 @@ public class NumberOfBooks implements ExampleChart<CategoryChart>
             b.add(Double.parseDouble(rs.getString("numberofbooks")));
             i++;
         }
-    }catch(Exception e)
+    }catch(NumberFormatException | SQLException e)
     {
         System.out.println(e);
     }
